@@ -27,18 +27,27 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-content-copy"></i>
-              <span class="menu-title">Basic UI Elements</span>
+              <i class="menu-icon mdi mdi-file-chart"></i>
+              <span class="menu-title">Master Data</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('user.index')}}">Buttons</a>
+                    <a class="nav-link " href="{{route('user.index')}}"> <i class="menu-icon mdi mdi-account-multiple-outline"></i>User</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                    <a class="nav-link " href="{{route('barang.index')}}"> <i class="menu-icon mdi mdi-package-variant-closed"></i>Barang</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="{{route('kategori.index')}}"> <i class="menu-icon mdi  mdi-dice-multiple"></i>Kategori</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('ruangan.index')}}"><i class="menu-icon mdi  mdi-home-outline"></i>Ruangan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('supplier.index')}}"><i class="menu-icon mdi  mdi-store"></i>Supplier</a>
+                  </li>
               </ul>
             </div>
           </li>
