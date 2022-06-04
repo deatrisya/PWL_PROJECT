@@ -41,7 +41,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        $kategori = Katagori::all();
+        $kategori = Kategori::all();
         return view('barang.barangCreate',['kategori'=>$kategori]);
     }
 
