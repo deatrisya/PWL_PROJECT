@@ -4,10 +4,10 @@
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <img src="{{asset('admin/images/faces/face1.jpg')}}" alt="profile image">
+                  <img src="{{asset('storage/'.Auth()->user()->foto)}}" alt="profile image">
             </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Richard V.Welsh</p>
+                  <p class="profile-name">{{Auth()->user()->nama}}</p>
                   <div>
                     <small class="designation text-muted">Manager</small>
                     <span class="status-indicator online"></span>
@@ -34,7 +34,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                  <a class="nav-link" href="{{route('user.index')}}">Buttons</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
