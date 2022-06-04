@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/',[HomeController::class, 'index'])->name('home');
+
+    // User
+    Route::resource('user',UsersController::class);
 });
+
+
