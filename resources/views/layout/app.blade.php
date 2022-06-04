@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container-scroller">
-        {{-- @include('sweetalert::alert') --}}
+        @include('sweetalert::alert')
         @include('layout.navbar')
         <div class="container-fluid page-body-wrapper">
             @include('layout.sidebar')
