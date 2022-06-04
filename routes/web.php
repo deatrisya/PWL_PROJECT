@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +28,11 @@ Route::group(['middleware' => 'auth'], function(){
 
     // User
     Route::resource('user',UsersController::class);
+
+    Route::resource('ruangan',RuanganController::class);
+    Route::resource('supplier',SupplierController::class);
+    Route::resource('kategori',KategoriController::class);
+    Route::resource('barang',BarangController::class);
 });
 
 
