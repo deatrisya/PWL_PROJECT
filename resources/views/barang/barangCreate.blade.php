@@ -3,25 +3,14 @@
     Tambah Data Barang
 @endsection
 @section('content')
-    <div class="mt-2 col-md-8 mx-auto">
+    <div class="mt-2 col-md-12">
         <div class="card ">
             <h5 class="card-header bg-primary text-white">Tambah Data Barang</h5>
             <div class="card-body">
-              @if ($errors->any())
-              <div class="alert alert-danger">
-                <strong>Whoops!</strong>There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-              </div>
-
-              @endif
               <form method="POST" action="{{route('barang.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="kode_barang">Kode Barang</label>
                             <input type="text" class="form-control" name="kode_barang">
@@ -34,6 +23,8 @@
                             <label for="nama_barang">Nama Barang</label>
                             <input type="text" class="form-control" name="nama_barang">
                         </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="stok">Stok</label>
                             <input type="text" class="form-control" name="stok">
