@@ -3,7 +3,7 @@
 Edit User
 @endsection
 @section('content')
-<div class="mt-2 col-md-8 mx-auto ">
+<div class="mt-2 col-md-12 ">
     <div class="card ">
         <h5 class="card-header bg-primary text-white">Edit Data User</h5>
         <div class="card-body">
@@ -11,7 +11,7 @@ Edit User
                 @csrf
                 @method('PUT')
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Foto</label><br>
                             <input type="file" name="foto" class="form-control" value="{{old('foto')}}">
@@ -27,6 +27,9 @@ Edit User
                                 <div class="error">{{ $errors->first('nama') }}</div>
                             @endif
                         </div>
+                    </div>
+                    <div class="col-md-4">
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Username</label>
                             <input type="text" class="form-control" id="username" name="username"
@@ -43,9 +46,6 @@ Edit User
                                 <div class="error">{{ $errors->first('email') }}</div>
                             @endif
                         </div>
-                    </div>
-                    <div class="col-md-6">
-
                         <div class="form-group">
                             <label for="example">Ganti Password</label>
                             <input type="password" class="form-control" name="password">
@@ -57,6 +57,7 @@ Edit User
                             <label for="example">Konfirmasi Password</label>
                             <input type="password" class="form-control" name="password_confirmation">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="{{$user->tgl_lahir}}"
@@ -65,6 +66,8 @@ Edit User
                                 <div class="error">{{ $errors->first('tgl_lahir') }}</div>
                             @endif
                         </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Tempat Lahir</label>
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
