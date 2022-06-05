@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UsersController extends Controller
 {
@@ -24,7 +25,6 @@ class UsersController extends Controller
             ->orWhere('email','like',"%{$request->keyword}%")
             ->orWhere('tgl_lahir','like',"%{$request->keyword}%")
             ->orWhere('tempat_lahir','like',"%{$request->keyword}%")
-            ->orWhere('jenis_kelamin','like',"%{$request->keyword}}%")
             ->orWhere('alamat','like',"%{$request->keyword}}%");
         })->orderBy('id')->paginate($pagination);
 
@@ -40,7 +40,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.userCreate');
     }
 
     /**
@@ -51,7 +51,37 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'foto' => 'required',
+            'nama' => 'required',
+            'username'=> 'required|string|max:20',
+            'password' => 'min:8|confirmed|nullable',
+            'email' => 'required|email|unique:users',
+            'tgl_lahir' => 'required|date',
+            'tempat_lahir' => 'string|required',
+            'jenis_kelamin' => 'required|string',
+            'alamat' => 'required',
+        ]);
+
+        $user = new User;
+        $user -> nama = $request->nama;
+        $user -> username = $request->username;
+        $user -> password = Hash::make($request->password);
+        $user -> email = $request->email;
+        $user -> tgl_lahir = $request->tgl_lahir;
+        $user -> tempat_lahir = $request->tempat_lahir;
+        $user -> jenis_kelamin = $request->jenis_kelamin;
+        $user -> alamat = $request->alamat;
+
+        if ($request->file('foto')) {
+            $image_name = $request->file('foto')->store('user','public');
+        }
+        $user -> foto = $image_name;
+        $user->save();
+
+        Alert::success('Success','User Baru Berhasil Ditambahkan');
+        return redirect()->route('user.index');
+
     }
 
     /**
@@ -90,7 +120,7 @@ class UsersController extends Controller
         // dd($request->all());
         $request->validate([
             'nama' => 'required',
-            'username'=> 'required|string|max:20',
+            'username'=> 'required|string|max:20|unique:users,username,'.$id,
             'password' => 'min:8|confirmed|nullable',
             'email' => 'required|email|unique:users,email,'.$id,
             'tgl_lahir' => 'required|date',
@@ -124,9 +154,8 @@ class UsersController extends Controller
         $user -> alamat = $request->alamat;
         $user -> save();
 
-        // Alert::success('Success','User Berhasil Diupdate');
-        return redirect()->route('user.index')
-        -> with('success', 'User Berhasil Diupdate');
+        Alert::success('Success','User Berhasil Diupdate');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -138,7 +167,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('user.index')
-            -> with('success', 'User Berhasil Dihapus');
+        Alert::success('Success','User Berhasil Dihapus');
+        return redirect()->route('user.index');
     }
 }
