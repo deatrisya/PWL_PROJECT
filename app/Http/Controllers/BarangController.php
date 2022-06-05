@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Kategori;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Katagori;
@@ -24,7 +25,7 @@ class BarangController extends Controller
             ->where('kode_barang','like',"%{$request->keyword}%")
             ->orWhere('nama_barang','like',"%{$request->keyword}%")
             ->orWhere('stok','like',"%{$request->keyword}%")
-            ->orWhereHas('nama_katagori',function(Builder $namakategori) use ($request){
+            ->orWhereHas('kategori',function(Builder $namakategori) use ($request){
                 $namakategori->where('nama_kategori','like',"%{$request->keyword}%");
             });
         })->orderBy('id')
@@ -133,8 +134,7 @@ class BarangController extends Controller
             $image_name = $request->file('foto_barang')->store('barang', 'public');
             $barang-> foto_barang = $image_name;
         }
-
-
+        
         $barang -> nama_barang = $request->nama_barang;
         $barang -> stok = $request->stok;
         $barang -> kategori_id = $request->kategori_id;
