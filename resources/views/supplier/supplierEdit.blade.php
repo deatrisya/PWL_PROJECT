@@ -41,7 +41,7 @@ Edit Data Supplier
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a class="btn btn-secondary" href="{{ route('barang.index')}}">Cancel</a>
+                    <a class="btn btn-secondary" href="{{ route('supplier.index')}}">Cancel</a>
                 </div>
             </form>
         </div>
