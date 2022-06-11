@@ -134,7 +134,8 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown d-none d-xl-inline-block">
+         @if (Auth::user())
+         <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, {{Auth()->user()->nama}} !</span>
               <img class="img-xs rounded-circle" src="{{asset('storage/'.Auth()->user()->foto)}}" alt="Profile image">
@@ -162,11 +163,13 @@
               <a class="dropdown-item">
                 Check Inbox
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Sign Out
               </a>
-            </div>
-          </li>
+              <form action="{{route('logout')}}" id="logout-form" method="POST" class="d-none">
+                @csrf
+            </form>
+            @endif
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="mdi mdi-menu"></span>
