@@ -17,4 +17,8 @@ class Supplier extends Model
         'nama_perusahaan',
         'alamat'
     ];
+
+    public function pengadaan(){
+        return $this->hasMany(Pengadaan::class);
+    }
 }
