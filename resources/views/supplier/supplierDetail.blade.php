@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Logo</label><br>
-                            <img width="120px" height="180px" src="{{ asset('storage/' . $supplier->logo) }}">
+                            <img width="120px" height="120px" src="{{ asset('storage/' . $supplier->logo) }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nama Perusahaan</label>
