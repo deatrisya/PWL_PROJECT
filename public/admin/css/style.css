@@ -14312,6 +14312,12 @@ pre {
     width: 100%;
     min-width: 100%; }
 
+    /* tambahan */
+    table td img.img-table {
+        width:80px;
+        height: 80px;
+    }
+
 @media (min-width: 576px) {
   .border-right-sm {
     border-right: 1px solid #f2f2f2; } }
