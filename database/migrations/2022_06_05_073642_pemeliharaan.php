@@ -16,7 +16,7 @@ class Pemeliharaan extends Migration
         Schema::create('pemeliharaan', function (Blueprint $table) {
             $table->id();
             $table->date('tgl_pemeliharaan');
-            $table->double('jumlah');
+            $table->integer('jumlah');
             $table->enum('status', ['Sedang Perbaikan','Selesai Perbaikan']);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');

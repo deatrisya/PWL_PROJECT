@@ -16,7 +16,7 @@ class Pengadaan extends Migration
         Schema::create('pengadaan', function (Blueprint $table) {
             $table->id();
             $table->date('tgl_masuk');
-            $table->double('jumlah');
+            $table->integer('jumlah');
             $table->string('sumber_dana');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');

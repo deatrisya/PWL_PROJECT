@@ -16,7 +16,7 @@ class Penyusutan extends Migration
         Schema::create('penyusutan', function (Blueprint $table) {
             $table->id();
             $table->date('tgl_keluar');
-            $table->double('jumlah');
+            $table->integer('jumlah');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('barang_id')->nullable();
