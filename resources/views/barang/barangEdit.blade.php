@@ -34,7 +34,7 @@ Edit Data Barang
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="stok">Stok</label>
-                            <input type="text" class="form-control" name="stok" required value="{{$barang->stok}}">
+                            <input type="text" class="form-control" name="stok" readonly value="{{$barang->stok}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Kategori</label>
