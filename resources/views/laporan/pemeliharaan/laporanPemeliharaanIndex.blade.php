@@ -52,6 +52,7 @@ Laporan Data Pemeliharaan Barang
                     </tbody>
                 </table>
             </div>
+        </div>
     </div>
 </div>
 @endsection
