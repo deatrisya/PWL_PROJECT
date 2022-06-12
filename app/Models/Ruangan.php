@@ -19,4 +19,8 @@ class Ruangan extends Model
     public function pengadaan(){
         return $this->hasMany(Pengadaan::class);
     }
+    
+    public function penyusutan(){
+        return $this->hasMany(Penyusutan::class );
+    }
 }
