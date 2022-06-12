@@ -12,6 +12,21 @@
             table tr td,
             table tr th {
                 font-size: 9pt;
+                border:1px solid #000;
+            }
+            table tr th{
+                background-color: rgb(197, 197, 197);
+                padding: 3px; width: 20px;
+            }
+            table tr td{
+                text-transform: uppercase;
+                padding-left: 12px;
+            }
+            .text-center{
+                text-align: center;
+            }
+            .text-left{
+                text-align: left;
             }
 
         </style>
@@ -46,28 +61,27 @@
         <table align="center" style="border-collapse:collapse;">
             <thead>
                 <tr>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">NO</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">TANGGAL MASUK</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">PENANGGUNG JAWAB</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">BARANG</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">SUPPLIER</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">RUANGAN</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">JUMLAH</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">SUMBER DANA</th>
+                  <th>NO</th>
+                  <th>TANGGAL MASUK</th>
+                  <th>PENANGGUNG JAWAB</th>
+                  <th>BARANG</th>
+                  <th>SUPPLIER</th>
+                  <th>RUANGAN</th>
+                  <th>JUMLAH</th>
+                  <th>SUMBER DANA</th>
                 </tr>
               </thead>
               <tbody>
                   @foreach ($pengadaan as $data)
-                   <tr>
-
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: center;padding: 2px; width: 40px;">{{$loop->iteration}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 80px;">{{date('d F Y',strtotime($data->tgl_masuk))}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 120px;">{{$data->user->nama}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 110px;">{{$data->barang->nama_barang}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 150px;">{{$data->supplier->nama_perusahaan}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 100px;">{{$data->ruangan->nama_ruangan}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: center;padding: 2px; width: 70px;">{{$data->jumlah}} pcs </td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 120px;">{{$data->sumber_dana}}</td>
+                   <tr class="text-left">
+                      <td class="text-center" style="padding: 2px; width: 40px;">{{$loop->iteration}}</td>
+                      <td style="width: 80px;">{{date('d F Y',strtotime($data->tgl_masuk))}}</td>
+                      <td style="width: 120px;">{{$data->user->nama}}</td>
+                      <td style="width: 110px;">{{$data->barang->nama_barang}}</td>
+                      <td style="width: 150px;">{{$data->supplier->nama_perusahaan}}</td>
+                      <td style="width: 100px;">{{$data->ruangan->nama_ruangan}}</td>
+                      <td class="text-center"  style="padding: 2px; width: 70px;">{{$data->jumlah}} pcs </td>
+                      <td style="width: 120px;">{{$data->sumber_dana}}</td>
                    </tr>
                   @endforeach
               </tbody>
