@@ -12,8 +12,22 @@
             table tr td,
             table tr th {
                 font-size: 10pt;
+                border:1px solid #000;
             }
-
+            table tr th{
+                background-color: rgb(197, 197, 197);
+                padding: 3px; width: 20px;
+            }
+            table tr td {
+                text-transform: uppercase;
+                padding-left: 12px;
+            }
+            .text-center{
+                text-align: center;
+            }
+            .text-left{
+                text-align: left;
+            }
         </style>
         <table align="center" style="border-collapse:collapse;">
             <td style="border-bottom:2px solid #000; text-align: left;padding-bottom: 2px; width: 100px; width:100px">
@@ -45,25 +59,24 @@
         @endphp </p>
         <table align="center" style="border-collapse:collapse;">
             <thead>
-                <tr>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">NO</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">TANGGAL KELUAR</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">PENANGGUNG JAWAB</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">BARANG</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">RUANGAN</th>
-                  <th style="border:1px solid #000; text-align: center;padding: 3px; width: 20px; background-color: rgb(197, 197, 197);">JUMLAH</th>
+                <tr class="text-center">
+                  <th">NO</th>
+                  <th">TANGGAL KELUAR</th>
+                  <th">PENANGGUNG JAWAB</th>
+                  <th">BARANG</th>
+                  <th">RUANGAN</th>
+                  <th">JUMLAH</th>
                 </tr>
               </thead>
               <tbody>
                   @foreach ($penyusutan as $data)
-                   <tr>
-
-                      <td style="border:1px solid #000; text-align: center;padding: 2px; width: 40px;">{{$loop->iteration}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 150px;">{{date('d F Y',strtotime($data->tgl_keluar))}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 180px;">{{$data->user->nama}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 160px;">{{$data->barang->nama_barang}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: left;padding-left: 12px; width: 180px;">{{$data->ruangan->nama_ruangan}}</td>
-                      <td style="border:1px solid #000; text-transform: uppercase; text-align: center;padding: 2px; width: 100px;">{{$data->jumlah}} pcs </td>
+                   <tr class="text-left">
+                      <td class="text-center" style="padding: 2px; width: 40px;">{{$loop->iteration}}</td>
+                      <td style="width: 150px;">{{date('d F Y',strtotime($data->tgl_keluar))}}</td>
+                      <td style="width: 180px;">{{$data->user->nama}}</td>
+                      <td style="width: 160px;">{{$data->barang->nama_barang}}</td>
+                      <td style="width: 180px;">{{$data->ruangan->nama_ruangan}}</td>
+                      <td class="text-center" style="width: 100px;">{{$data->jumlah}} pcs </td>
                    </tr>
                   @endforeach
               </tbody>
