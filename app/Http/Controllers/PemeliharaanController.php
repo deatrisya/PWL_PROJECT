@@ -19,22 +19,20 @@ class PemeliharaanController extends Controller
     public function index(Request $request)
     {
         $pagination = 5;
-        $pemeliharaan = Pemeliharaan::when($request->keyword, function($query) use ($request){
+        $pemeliharaan = Pemeliharaan::when($request->keyword, function ($query) use ($request){
             $query
             ->where('tgl_pemeliharaan','like',"%{$request->keyword}%")
             ->orWhere('jumlah','like',"%{$request->keyword}%")
-            ->orWhere('status','like',"%{$request->keyword}%")
-            ->orWhereHas('user',function(Builder $namauser) use ($request){
-                $namauser->where('nama','like',"%{$request->keyword}%");
+            ->orWhereHas('user', function (Builder $pemeliharaan) use ($request){
+                $pemeliharaan->where('nama','like',"%{$request->keyword}%");
             })
-            ->orWhereHas('barang',function(Builder $namabarang) use ($request){
-                $namabarang->where('nama_barang','like',"%{$request->keyword}%");
-            })
-            ;
+            ->orWhereHas('barang', function (Builder $pemeliharaan) use ($request){
+                $pemeliharaan->where('nama_barang','like',"%{$request->keyword}%");
+            });
         })->orderBy('id')
         ->paginate($pagination);
 
-        return view('transaksi.pemeliharaanIndex',compact('pemeliharaan'))
+        return view('transaksi.pemeliharaan.pemeliharaanIndex',compact('pemeliharaan'))
             ->with('i',(request()->input('page',1)-1)*$pagination);
     }
 
@@ -45,9 +43,12 @@ class PemeliharaanController extends Controller
      */
     public function create()
     {
-        $barang = Barang::all();
         $user = User::all();
-        return view('transaksi.pemeliharaanCreate',['barang', 'user'=>$barang , $user]);
+        $barang = Barang::all();
+        return view('transaksi.pemeliharaan.pemeliharaanCreate',[
+            'barang' => $barang,
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -62,7 +63,6 @@ class PemeliharaanController extends Controller
             [
                 'tgl_pemeliharaan' => 'required|date',
                 'jumlah' => 'required',
-                'status' => 'required',
                 'user_id' => 'required',
                 'barang_id' => 'required'
             ]
@@ -71,9 +71,13 @@ class PemeliharaanController extends Controller
         $pemeliharaan = new Pemeliharaan;
         $pemeliharaan -> tgl_pemeliharaan = $request->tgl_pemeliharaan;
         $pemeliharaan -> jumlah = $request->jumlah;
-        $pemeliharaan -> status = $request->status;
+        $pemeliharaan -> status = 'Sedang Perbaikan';
         $pemeliharaan -> user_id = $request->user_id;
         $pemeliharaan -> barang_id = $request->barang_id;
+
+        $barang = Barang::where('id',$request->barang_id);
+        $valueBarang = $barang->value('stok');
+        $barang->update(['stok' => $valueBarang - $request->jumlah]);
 
         $pemeliharaan -> save();
 
@@ -90,7 +94,7 @@ class PemeliharaanController extends Controller
     public function show($id)
     {
         $pemeliharaan = Pemeliharaan::find($id);
-        return view('pemeliharaan.pemeliharaanDetail',compact('pemeliharaan'));
+        return view('transaksi.pemeliharaan.pemeliharaanDetail',compact('pemeliharaan'));
     }
 
     /**
@@ -104,7 +108,7 @@ class PemeliharaanController extends Controller
         $pemeliharaan = Pemeliharaan::findOrFail($id);
         $user = User::all();
         $barang = Barang::all();
-        return view('pemeliharaan.pemeliharaanEdit',compact('pemeliharaan','user','barang'));
+        return view('transaksi.pemeliharaan.pemeliharaanEdit',compact('pemeliharaan','user','barang'));
     }
 
     /**
@@ -116,12 +120,12 @@ class PemeliharaanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request -> validate(
             [
                 'tgl_pemeliharaan' => 'required|date',
                 'jumlah' => 'required',
                 'status' => 'required',
-                'user_id' => 'required',
                 'barang_id' => 'required'
             ]
         );
@@ -130,10 +134,20 @@ class PemeliharaanController extends Controller
         $pemeliharaan -> tgl_pemeliharaan = $request->tgl_pemeliharaan;
         $pemeliharaan -> jumlah = $request->jumlah;
         $pemeliharaan -> status = $request->status;
-        $pemeliharaan -> user_id = $request->user_id;
         $pemeliharaan -> barang_id = $request->barang_id;
 
         $pemeliharaan -> save();
+
+        if ($request->status == 'Sedang Perbaikan') {
+            $barang = Barang::where('id',$request->barang_id);
+            $valueBarang = $barang->value('stok');
+            $barang->update(['stok' => $valueBarang - $request->jumlah]);
+        } else {
+            $barang = Barang::where('id',$request->barang_id);
+            $valueBarang = $barang->value('stok');
+            $barang->update(['stok' => $valueBarang + $request->jumlah]);
+        }
+
 
         Alert::success('Success','Data Pemeliharaan Berhasil Diupdate');
         return redirect()->route('pemeliharaan.index');
@@ -147,7 +161,20 @@ class PemeliharaanController extends Controller
      */
     public function destroy($id)
     {
-        Pemeliharaan::find($id)->delete();
+        $pemeliharaan = Pemeliharaan::find($id);
+        $barang = $pemeliharaan->barang_id;
+        $barang = Barang::where('id',$barang);
+        $valueBarang = $barang->value('stok');
+
+        $valuePengadaan =Pemeliharaan::where('id',$id)->value('jumlah');
+
+        if($pemeliharaan->status == "Sedang Perbaikan" ) {
+            $barang->update(['stok' => $valueBarang + $valuePengadaan]);
+        } else {
+            $pemeliharaan->delete();
+        }
+        $pemeliharaan->delete();
+
         Alert::success('Success','Data Pemeliharaan Berhasil Dihapus');
         return redirect()->route('pemeliharaan.index');
     }
