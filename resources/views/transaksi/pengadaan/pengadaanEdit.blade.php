@@ -1,11 +1,11 @@
 @extends('layout.app')
 @section('title')
-Edit Pengadaan
+Edit Barang Masuk
 @endsection
 @section('content')
 <div class="mt-2 col-md-12">
     <div class="card ">
-        <h5 class="card-header bg-primary text-white">Edit Data Pengadaan</h5>
+        <h5 class="card-header bg-primary text-white">Edit Data Barang Masuk</h5>
         <div class="card-body">
             <form method="POST" action="{{route('pengadaan.update',$pengadaan->id)}}">
                 @csrf
@@ -24,7 +24,7 @@ Edit Pengadaan
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Barang</label>
-                            <select class="form-control" name="barang_id" id="barang_id" required>
+                            <select class="form-control" name="barang_id" id="barang_id" disabled>
                                 <option value="">--Pilih Barang--</option>
                                 @foreach ($barang as $data)
                                 <option value="{{$data->id}}" @if ($data->id == $pengadaan->barang_id) selected

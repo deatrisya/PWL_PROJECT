@@ -1,11 +1,11 @@
 @extends('layout.app')
 @section('title')
-Detail Pengadaan
+Detail Barang Masuk
 @endsection
 @section('content')
 <div class="mt-2 col-md-12">
     <div class="card ">
-        <h5 class="card-header bg-primary text-white">Detail Data Pengadaan</h5>
+        <h5 class="card-header bg-primary text-white">Detail Data Barang Masuk</h5>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">

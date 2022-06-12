@@ -1,12 +1,12 @@
 @extends('layout.app')
 @section('title')
-Data Pengadaan
+Data Barang Masuk
 @endsection
 @section('content')
 <div class="col-lg-12 grid-martin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Data Pengadaan</h4>
+            <h4 class="card-title">Data Barang Masuk</h4>
             <div class="button">
                 <div class="row">
                 <div class="col-md-6 float-left">
