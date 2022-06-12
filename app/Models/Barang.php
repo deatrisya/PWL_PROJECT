@@ -25,11 +25,13 @@ class Barang extends Model
     public function kategori(){
         return $this->belongsTo(Kategori::class);
     }
-
     public function pengadaan(){
         return $this->hasMany(Pengadaan::class );
     }
     public function penyusutan(){
         return $this->hasMany(Penyusutan::class );
+    }
+    public function pemeliharaan(){
+        return $this->hasMany(Pemeliharaan::class);
     }
 }
