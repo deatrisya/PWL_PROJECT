@@ -1,13 +1,13 @@
 @extends('layout.app')
 @section('title')
-    Tambah Data Pengadaan
+    Tambah Data Barang Masuk
 @endsection
 @section('content')
 <div class="mt-2 col-md-12">
     <div class="card ">
-        <h5 class="card-header bg-primary text-white">Tambah Data Pengadaan</h5>
+        <h5 class="card-header bg-primary text-white">Tambah Data Barang Masuk</h5>
         <div class="card-body">
-          <form method="POST" action="{{route('pengadaan.store')}}" enctype="multipart/form-data">
+          <form method="POST" action="{{route('pengadaan.store')}}">
             @csrf
             <div class="row">
                 <div class="col-md-4">
