@@ -45,11 +45,11 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     //Laporan
-    Route::get('laporan/pengadaan',[LaporanPengadaanController::class,'pengadaan'])->name('laporanPengadaan');
+    Route::get('laporan/pengadaans',[LaporanPengadaanController::class,'pengadaan'])->name('laporanPengadaan');
     Route::get('laporan pengadaan/cetak',[LaporanPengadaanController::class,'cetak_pdf'])->name('laporanPengadaan.cetakPdf');
-    Route::get('laporan/pemeliharaan',[LaporanPemeliharaanController::class,'pemeliharaan'])->name('laporanPemeliharaan');
+    Route::get('laporan/pemeliharaans',[LaporanPemeliharaanController::class,'pemeliharaan'])->name('laporanPemeliharaan');
     Route::get('laporan pemeliharaan/cetak',[LaporanPemeliharaanController::class,'cetak_pdf'])->name('laporanPemeliharaan.cetakPdf');
-    Route::get('laporan/penyusutan',[LaporanPenyusutanController::class,'penyusutan'])->name('laporanPenyusutan');
+    Route::get('laporan/penyusutans',[LaporanPenyusutanController::class,'penyusutan'])->name('laporanPenyusutan');
     Route::get('laporan penyusutan/cetak',[LaporanPenyusutanController::class,'cetak_pdf'])->name('laporanPenyusutan.cetakPdf');
 });
 
