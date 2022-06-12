@@ -66,13 +66,13 @@
             <div class="collapse" id="ui-basic1">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('pengadaan.index')}}"> <i class="menu-icon mdi mdi-inbox-arrow-up"></i>Pengadaan</a>
+                        <a class="nav-link " href="{{route('pengadaan.index')}}"> <i class="menu-icon mdi mdi-inbox-arrow-up"></i>Barang Masuk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-settings"></i>Pemeliharaan</a>
+                        <a class="nav-link " href="{{route('pemeliharaan.index')}}"> <i class="menu-icon mdi mdi-settings"></i>Pemeliharaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-inbox-arrow-down"></i>Penyusutan</a>
+                        <a class="nav-link " href="{{route('penyusutan.index')}}"> <i class="menu-icon mdi mdi-inbox-arrow-down"></i>Barang Keluar</a>
                     </li>
                 </ul>
             </div>
@@ -87,13 +87,13 @@
             <div class="collapse" id="ui-basic2">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-inbox-arrow-up"></i>Pengadaan</a>
+                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-inbox-arrow-up"></i>Barang Masuk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href=""> <i class="menu-icon mdi mdi-settings"></i>Pemeliharaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-inbox-arrow-down"></i>Penyusutan</a>
+                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-inbox-arrow-down"></i>Barang Keluar</a>
                     </li>
                 </ul>
             </div>
