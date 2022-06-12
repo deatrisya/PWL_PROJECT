@@ -3,6 +3,9 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PemeliharaanController;
+use App\Http\Controllers\PengadaanController;
+use App\Http\Controllers\PenyusutanController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UsersController;
@@ -33,6 +36,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('supplier',SupplierController::class);
     Route::resource('kategori',KategoriController::class);
     Route::resource('barang',BarangController::class);
+    Route::resource('pengadaan',PengadaanController::class);
+    Route::resource('penyusutan',PenyusutanController::class);
+    Route::resource('pemeliharaan',PemeliharaanController::class);
 });
 
 
