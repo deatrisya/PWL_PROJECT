@@ -24,13 +24,8 @@ Edit Barang Masuk
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Barang</label>
-                            <select class="form-control" name="barang_id" id="barang_id" disabled>
-                                <option value="">--Pilih Barang--</option>
-                                @foreach ($barang as $data)
-                                <option value="{{$data->id}}" @if ($data->id == $pengadaan->barang_id) selected
-                                    @endif>{{$data->nama_barang}}</option>
-                                @endforeach
-                            </select>
+                            <input type="hidden" name="barang_id" value="{{$pengadaan->barang_id}}">
+                            <input type="text" class="form-control"value="{{$pengadaan->barang->nama_barang}}" readonly>
                             @if ($errors->has('barang_id'))
                             <div class="error">{{ $errors->first('barang_id') }}</div>
                             @endif
