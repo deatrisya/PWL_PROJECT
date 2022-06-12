@@ -3,6 +3,9 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanPemeliharaanController;
+use App\Http\Controllers\LaporanPengadaanController;
+use App\Http\Controllers\LaporanPenyusutanController;
 use App\Http\Controllers\PemeliharaanController;
 use App\Http\Controllers\PengadaanController;
 use App\Http\Controllers\PenyusutanController;
@@ -39,6 +42,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('pengadaan',PengadaanController::class);
     Route::resource('penyusutan',PenyusutanController::class);
     Route::resource('pemeliharaan',PemeliharaanController::class);
+
+
+    //Laporan
+    Route::get('laporan/pengadaan',[LaporanPengadaanController::class,'pengadaan'])->name('laporanPengadaan');
+    Route::get('laporan pengadaan/cetak',[LaporanPengadaanController::class,'cetak_pdf'])->name('laporanPengadaan.cetakPdf');
+    Route::get('laporan/pemeliharaan',[LaporanPemeliharaanController::class,'pemeliharaan'])->name('laporanPemeliharaan');
+    Route::get('laporan pemeliharaan/cetak',[LaporanPemeliharaanController::class,'cetak_pdf'])->name('laporanPemeliharaan.cetakPdf');
+    Route::get('laporan/penyusutan',[LaporanPenyusutanController::class,'penyusutan'])->name('laporanPenyusutan');
+    Route::get('laporan penyusutan/cetak',[LaporanPenyusutanController::class,'cetak_pdf'])->name('laporanPenyusutan.cetakPdf');
 });
 
 
