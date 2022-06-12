@@ -39,7 +39,6 @@ Data Barang Keluar
                             <th scope="col">Barang</th>
                             <th scope="col">Ruangan</th>
                             <th scope="col">Jumlah</th>
-                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,43 +50,12 @@ Data Barang Keluar
                             <td>{{$data->barang->nama_barang}}</td>
                             <td>{{$data->ruangan->nama_ruangan}}</td>
                             <td>{{$data->jumlah}}</td>
-                            <td>
-                                <form action="{{ route('penyusutan.destroy',  $data->id) }}" method="POST">
-                                    <a class="btn btn-icons btn-primary" href="{{route('penyusutan.show', $data->id)}}"><i
-                                            class="mdi mdi-eye"></i></a>
-                                    <a class="btn btn-icons btn-warning" href="{{route('penyusutan.edit', $data->id)}}"><i
-                                            class="mdi mdi-pencil"></i></a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-icons btn-danger"><i
-                                            class="mdi mdi-delete"></i></button>
-                                </form>
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-        <div class="paginate">
-                <div class="container">
-                    <div class="row">
-                        <div class="detail-data col-md-12">
-                            <p>Page : {!! $penyusutan->currentPage() !!} <br />
-                                Jumlah Data : {!! $penyusutan->total() !!} <br />
-                                Data Per Halaman : {!! $penyusutan->perPage() !!} <br />
-                            </p>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="paginate-button float-right">
-                                {!! $penyusutan->links() !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-
 @endsection
