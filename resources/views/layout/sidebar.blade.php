@@ -87,13 +87,13 @@
             <div class="collapse" id="ui-basic2">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-inbox-arrow-up"></i>Barang Masuk</a>
+                        <a class="nav-link " href=" {{route('laporanPengadaan')}} "> <i class="menu-icon mdi mdi-inbox-arrow-up"></i>Barang Masuk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-settings"></i>Pemeliharaan</a>
+                        <a class="nav-link " href=" {{route('laporanPemeliharaan')}} "> <i class="menu-icon mdi mdi-settings"></i>Pemeliharaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href=""> <i class="menu-icon mdi mdi-inbox-arrow-down"></i>Barang Keluar</a>
+                        <a class="nav-link " href=" {{route('laporanPenyusutan')}} "> <i class="menu-icon mdi mdi-inbox-arrow-down"></i>Barang Keluar</a>
                     </li>
                 </ul>
             </div>
