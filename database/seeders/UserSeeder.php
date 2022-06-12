@@ -25,6 +25,18 @@ class UserSeeder extends Seeder
             'tempat_lahir' => 'Pasuruan',
             'jenis_kelamin' => 'P',
             'alamat' => 'Jl. Niaga 2'
-        ]);
+        ],
+        [
+            'foto' => null,
+            'nama' => 'Siti Aisyah',
+            'username' => 'aisyah',
+            'email' => 'sitiaisyah4110@gmail.com',
+            'password' => Hash::make('aisyah'),
+            'tgl_lahir' => '2002-01-14',
+            'tempat_lahir' => 'Pasuruan',
+            'jenis_kelamin' => 'P',
+            'alamat' => 'Jl. Kutuan Timur'
+        ]
+    );
     }
 }
