@@ -101,7 +101,7 @@ class PengadaanController extends Controller
 
         $pengadaan -> save();
 
-        Alert::success('Success','Data Pengadaan Berhasil Ditambahkan');
+        Alert::success('Success','Barang Masuk Berhasil Ditambahkan');
         return redirect()->route('pengadaan.index');
     }
 
@@ -178,7 +178,7 @@ class PengadaanController extends Controller
 
         $pengadaan -> save();
 
-        Alert::success('Success','Data Pengadaan Berhasil Diupdate');
+        Alert::success('Success','Barang Masuk Berhasil Diupdate');
         return redirect()->route('pengadaan.index');
     }
 
@@ -200,8 +200,8 @@ class PengadaanController extends Controller
 
         $barang->update(['stok' => $valueBarang - $valuePengadaan]);
         $pengadaan->delete();
-        
-        Alert::success('Success','Data Pengadaan Berhasil Dihapus');
+
+        Alert::success('Success','Barang Masuk Berhasil Dihapus');
         return redirect()->route('pengadaan.index');
     }
 
