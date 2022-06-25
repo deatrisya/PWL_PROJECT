@@ -16,7 +16,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('admin/images/sinbar persegi.png')}}" />
 </head>
 
 <body>
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-         
+
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input type="text" class="form-control @error('alamat') is-invalid @enderror "
