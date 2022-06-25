@@ -9,7 +9,7 @@
                     <div class="text-wrapper">
                         <p class="profile-name">{{Auth()->user()->nama}}</p>
                         <div>
-                            <small class="designation text-muted">Manager</small>
+                            <small class="designation text-muted">Admin</small>
                             <span class="status-indicator online"></span>
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                                 class="menu-icon mdi mdi-account-multiple-outline"></i>User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('barang.index')}}"> <i
-                                class="menu-icon mdi mdi-package-variant-closed"></i>Barang</a>
+                        <a class="nav-link" href="{{route('barang.index')}}"> <i
+                            class="menu-icon mdi mdi-package-variant-closed" ></i>Barang</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{route('kategori.index')}}"> <i
