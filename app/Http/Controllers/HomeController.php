@@ -43,14 +43,19 @@ class HomeController extends Controller
         $barangPemeliharaan = Pemeliharaan::count();
         $barangPenyusutan = Penyusutan::count();
 
-        // $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+        $perbaikan = Pemeliharaan::where('status','Sedang Perbaikan')->count();
+        $percentPerbaikan = $perbaikan / $barangPemeliharaan*100;
 
-        // foreach ($month as $key => $value) {
-        //     $barangMasuk[] = Pengadaan::whereMonth('created_at', '=', $value)->sum('jumlah');
-        //     $barangPemeliharaan[] = Pemeliharaan::whereMonth('created_at', '=', $value)->sum('jumlah');
-        //     $barangPenyusutan[] = Penyusutan::whereMonth('created_at', '=', $value)->sum('jumlah');
-        // }
+        $sl_Perbaikan = Pemeliharaan::where('status','Selesai Perbaikan')->count();
+        $percentSls = $sl_Perbaikan / $barangPemeliharaan*100;
 
+        $dataBarang = [];
+        $jenisBarang = Barang::all();
+        foreach ($jenisBarang as $key => $value) {
+            $jumlahBarang = Barang::where('id',$value->id)->sum('stok');
+            array_push($dataBarang,$jumlahBarang);
+        }
+        // dd($dataBarang);
         $data = [
             'today' => $today,
             'date' => $date,
@@ -61,10 +66,10 @@ class HomeController extends Controller
             'barangMasuk' => $barangMasuk,
             'barangPemeliharaan' => $barangPemeliharaan,
             'barangPenyusutan' => $barangPenyusutan,
-
-            // 'barangMasuk' => json_encode($barangMasuk, JSON_NUMERIC_CHECK),
-            // 'barangPemeliharaan' => json_encode($barangPemeliharaan, JSON_NUMERIC_CHECK),
-            // 'barangPenyusutan' => json_encode($barangPenyusutan, JSON_NUMERIC_CHECK),
+            'percentPerbaikan' => $percentPerbaikan,
+            'percentSls' => $percentSls,
+            'dataBarang' => json_encode($dataBarang,JSON_NUMERIC_CHECK),
+            'labelBarang' => Barang::pluck('nama_barang')->toArray(),
         ];
 
         return view('index', $data);

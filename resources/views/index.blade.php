@@ -195,54 +195,66 @@ Dashboard
     <div class="col-lg-5 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title text-primary mb-5">Transaction History</h2>
-                <div class="wrapper d-flex justify-content-between">
-                    <div class="side-left">
-                        <p class="mb-2">Pemasukan Barang</p>
-                        <p class="display-3 mb-4 font-weight-light">{{$barangMasuk}}</p>
+                <h2 class="card-title text-primary text-center mb-5">Histori Transaksi</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="wrapper d-flex justify-content-between">
+                            <div class="side-left">
+                                <p class="mb-2">Pemasukan Barang</p>
+                                <p class="display-3 mb-4 font-weight-light">{{$barangMasuk}}</p>
+                            </div>
+                            <div class="side-right">
+                                <small class="text-muted"></small>
+                            </div>
+                        </div>
                     </div>
-                    <div class="side-right">
-                        <small class="text-muted"></small>
+                    <div class="col-md-4">
+                        <div class="wrapper d-flex justify-content-between">
+                            <div class="side-left">
+                                <p class="mb-2">Perawatan Barang</p>
+                                <p class="display-3 mb-4 font-weight-light">{{$barangPemeliharaan}}</p>
+                            </div>
+                            <div class="side-right">
+                                <small class="text-muted"></small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="wrapper d-flex justify-content-between">
-                    <div class="side-left">
-                        <p class="mb-2">Perawatan Barang</p>
-                        <p class="display-3 mb-4 font-weight-light">{{$barangPemeliharaan}}</p>
-                    </div>
-                    <div class="side-right">
-                        <small class="text-muted"></small>
-                    </div>
-                </div>
-                <div class="wrapper d-flex justify-content-between">
-                    <div class="side-left">
-                        <p class="mb-2">Penyusutan Barang</p>
-                        <p class="display-3 mb-5 font-weight-light">{{$barangPenyusutan}}</p>
-                    </div>
-                    <div class="side-right">
-                        <small class="text-muted"></small>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2">Perbaikan</p>
-                        <p class="mb-2 text-primary">88%</p>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
-                            role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                    <div class="col-md-4">
+                        <div class="wrapper d-flex justify-content-between">
+                            <div class="side-left">
+                                <p class="mb-2">Pengeluaran Barang</p>
+                                <p class="display-3 mb-5 font-weight-light">{{$barangPenyusutan}}</p>
+                            </div>
+                            <div class="side-right">
+                                <small class="text-muted"></small>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="wrapper mt-4">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2">Selesai Perbaikan</p>
-                        <p class="mb-2 text-success">56%</p>
+                <div class="percentase-progress">
+                    <h2 class="card-title text-primary mb-4 text-center">Persentase Pemeliharaan</h2>
+                    <div class="wrapper">
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-2">Perbaikan</p>
+                            <p class="mb-2 text-primary">{{$percentPerbaikan}}%</p>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width: {{$percentPerbaikan}}%"
+                                aria-valuenow="{{$percentPerbaikan}}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-                            role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                    <div class="wrapper mt-4">
+
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-2">Selesai Perbaikan</p>
+                            <p class="mb-2 text-success">{{$percentSls}}%</p>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width: {{$percentSls}}%" aria-valuenow="{{$percentSls}}"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,84 +268,55 @@ Dashboard
             <div class="card-body">
                 <h5 class="card-title mb-4"></h5>
                 <div class="fluid-container">
-                    <canvas id="canvas" height="280" width="600"></canvas>
+                    <canvas id="canvas" height="280" width="900"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-{{-- </div> --}}
 @endsection
+@section('js')
+    <script>
+        var datBarang = {{$dataBarang}};
+        var labelBarang = <?php echo '["' . implode('", "', $labelBarang) . '"]' ?>;
 
-{{-- @section('js')
-<script>
-    var month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
-        'November', 'Desember'
-    ];
-    console.log(month);
-    var barangMasuk = {
-        {
-            $barangMasuk
-        }
-    };
-    var barangPemeliharaan = {
-        {
-            $barangPemeliharaan
-        }
-    };
-    var barangPenyusutan = {
-        {
-            $barangPenyusutan
-        }
-    };
-
-    var barChartData = {
-        labels: month,
-        datasets: [{
-                label: 'Pengadaan',
-                borderColor: "green",
-                data: barangMasuk,
+        var barChartData = {
+            labels: labelBarang,
+            datasets: [{
+                label: 'Data Barang',
+                borderColor: ["rgb(255, 99, 132)","rgb(255, 159, 64)"],
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(255, 159, 64, 0.2)'],
+                data: datBarang,
                 fill: false
-            },
-            {
-                label: 'Pemeliharaan',
-                borderColor: "blur",
-                data: barangPemeliharaan,
-                fill: false
-            },
-            {
-                label: 'Penyusutan',
-                borderColor: "pink",
-                data: barangPenyusutan,
-                fill: false
-            }
-        ]
+            }]
+        };
 
-    };
-
-
-    window.onload = function () {
-            var ctx = document.getElementById("canvas").getContext("2d");
+        var ctx = document.getElementById("canvas").getContext("2d");
             window.myBar = new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: barChartData,
                 options: {
-                    elements: {
-                        rectangle: {
-                            borderWidth: 2,
-                            borderColor: '#c1c1c1',
-                            borderSkipped: 'bottom'
-                        }
+                    legend: {
+                        display: false
                     },
-                    responsive: true,
                     title: {
                         display: true,
-                        text: 'Grafik Persediaan Barang'
+                        text: 'Jumlah Data Barang'
+                    },
+                    scales: {
+                        yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                            // OR //
+                            beginAtZero: true   // minimum value will be 0.
+                        }
+                    }]
                     }
                 }
             });
 
-</script>
-@endsection --}}
+
+    </script>
+@endsection
