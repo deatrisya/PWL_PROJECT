@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('admin/vendors/css/vendor.bundle.addons.css')}}">
 
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
-    <link rel="shorcut icon" href="{{asset('admin/images/favicon.png')}}">
+    <link rel="shorcut icon" href="{{asset('admin/images/sinbar persegi.png')}}">
 </head>
 <body>
     <div class="container-scroller">
