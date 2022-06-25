@@ -9,20 +9,24 @@ Laporan Data Pemeliharaan Barang
             <h4 class="card-title">Laporan Data Pemeliharaan Barang</h4>
             <div class="button">
                 <div class="row">
-                <div class="col-md-12">
-                    <div class="d-flex float-right">
-                        <div class="d-flex flex-row-reverse float-right px-2">
-                            <a href=" {{route('laporanPemeliharaan.cetakPdf')}} " target="_blank" class="btn btn-icons btn-danger"> <i class="mdi mdi-file-document"></i> </a>
-                        </div>
-                        <div class="ml-3">
-                                <form class="form-inline my-2 my-lg-0" action="{{url()->current()}}" method="GET">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                        aria-label="Search" name="keyword" value="{{request('keyword')}}">
-                                    <button class="btn btn-icons btn-primary" type="submit"><i
-                                            class="mdi mdi-magnify"></i></button>
-                                </form>
+                    <div class="col-md-6 float-left">
+                        <form action="{{url()->current()}}" method="GET">
+                            <div class="input-group mb-3">
+                                <input type="date" class="form-control" name="start_date" id="start_date" required
+                                    value="{{request('start_date')}}">
+                                <input type="date" class="form-control" name="end_date" id="end_date" required
+                                    value="{{request('end_date')}}">
+                                <button class="btn btn-primary" type="submit">Cari</button>
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex float-right">
+                            <div class="d-flex flex-row-reverse float-right px-2">
+                                <button onclick="cetakData()" target="_blank" type="submit" class="btn btn-danger"> <i
+                                        class="mdi mdi-file-document"></i> Cetak Data</button>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -52,7 +56,28 @@ Laporan Data Pemeliharaan Barang
                     </tbody>
                 </table>
             </div>
+            <div class="paginate">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <div class="paginate-button float-right">
+                                {{$pemeliharaan->links() }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    function cetakData() {
+        var start_date = document.getElementById('start_date').value;
+        var end_date = document.getElementById('end_date').value;
+        window.open('{{route("laporanPemeliharaan.cetakPdf")}}?start_date=' + start_date + '&end_date=' + end_date);
+    }
+
+</script>
 @endsection
