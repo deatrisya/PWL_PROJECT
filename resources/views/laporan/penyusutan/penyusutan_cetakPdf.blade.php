@@ -1,86 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Data Penyusutan Barang</title>
+    <title>Laporan Data Barang Keluar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
+<style>
+    .b-bottom {
+        border-bottom: 2px solid black;
+    }
+
+    .pl-pr {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .f-size {
+        font-size: 9pt;
+    }
+
+    table tr th {
+        background-color: rgb(197, 197, 197);
+    }
+
+</style>
+
 <body>
-    <div style="overflow: border: 1px solid #000; margin: 20px ; padding: 20px; width: 80%; background-color: none;">
-        <style type="text/css">
-            table tr td,
-            table tr th {
-                font-size: 10pt;
-                border:1px solid #000;
-            }
-            table tr th{
-                background-color: rgb(197, 197, 197);
-                padding: 3px; width: 20px;
-            }
-            table tr td {
-                text-transform: uppercase;
-                padding-left: 12px;
-            }
-            .text-center{
-                text-align: center;
-            }
-            .text-left{
-                text-align: left;
-            }
-        </style>
-        <table align="center" style="border-collapse:collapse;">
-            <td style="border-bottom:2px solid #000; text-align: left;padding-bottom: 2px; width: 100px; width:100px">
+    <table style="border-collapse:collapse;" class="mx-auto mt-3">
+        <tr>
+            <td class="float-left b-bottom pr-5">
                 <img src="{{ public_path("admin/images/PNG.png") }}" alt="" style="width: 110px; height: 110px;">
             </td>
-            <td style="border-bottom:2px solid #000; text-align: center;padding: 2px; width: 200px; width:670px">
-                <h3 align="center">POLITEKNIK NEGERI MALANG <br> LAPORAN INVENTORY JURUSAN TEKNOLOGI INFORMASI </h3>
-                <p align="center">Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141
+            <td class="b-bottom">
+                <h5 class="text-center">POLITEKNIK NEGERI MALANG <br> LAPORAN INVENTORY JURUSAN TEKNOLOGI INFORMASI
+                </h5>
+                <p class="text-center">Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141
                     <br>
                     Telepon: (0341) 404424, Email : cs@polinema.ac.id, Website : www.polinema.ac.id
                 </p>
             </td>
-            <td style="border-bottom:2px solid #000; text-align: right;padding-top: 5px; width: 100px; width:100px">
+            <td class="b-bottom pl-5">
                 <img src="{{ public_path("admin/images/logo JTI.png") }}" alt="" style="width: 100px; height: 100px;">
             </td>
-
-        </table>
-
-        <h4 style="text-align: center;" > LAPORAN DATA PENYUSUTAN BARANG</h4>
+        </tr>
+    </table>
+    <div class="title mb-4">
+        <div class="text-center text-uppercase mt-4">
+            <h5>Laporan Data Barang Keluar</h5>
+        </div>
         <p style="text-indent :5em;"> <b>Tanggal </b> &nbsp; :
             @php
-                echo date(' d F Y');
+            echo date(' d F Y');
             @endphp </p>
 
-        <p style="text-indent :5em;"> <b>Waktu </b> &nbsp;&nbsp;&nbsp;  :
-        @php
+        <p style="text-indent :5em;"> <b>Waktu </b> &nbsp;&nbsp;&nbsp; :
+            @php
             date_default_timezone_set('Asia/Jakarta'); // Zona Waktu indonesia
-            echo date('h:i:s a'); // menampilkan jam sekarang
-        @endphp </p>
-        <table align="center" style="border-collapse:collapse;">
-            <thead>
-                <tr class="text-center">
-                  <th">NO</th>
-                  <th">TANGGAL KELUAR</th>
-                  <th">PENANGGUNG JAWAB</th>
-                  <th">BARANG</th>
-                  <th">RUANGAN</th>
-                  <th">JUMLAH</th>
-                </tr>
-              </thead>
-              <tbody>
-                  @foreach ($penyusutan as $data)
-                   <tr class="text-left">
-                      <td class="text-center" style="padding: 2px; width: 40px;">{{$loop->iteration}}</td>
-                      <td style="width: 150px;">{{date('d F Y',strtotime($data->tgl_keluar))}}</td>
-                      <td style="width: 180px;">{{$data->user->nama}}</td>
-                      <td style="width: 160px;">{{$data->barang->nama_barang}}</td>
-                      <td style="width: 180px;">{{$data->ruangan->nama_ruangan}}</td>
-                      <td class="text-center" style="width: 100px;">{{$data->jumlah}} pcs </td>
-                   </tr>
-                  @endforeach
-              </tbody>
-            </table>
+            echo date('h:i:s'); // menampilkan jam sekarang
+            @endphp </p>
     </div>
+    <table class="table table-bordered table-sm pl-pr f-size">
+        <thead>
+            <tr class="text-center">
+                <th class="align-middle">NO</th>
+                <th class="align-middle">TANGGAL KELUAR</th>
+                <th class="align-middle">PENANGGUNG JAWAB</th>
+                <th class="align-middle">BARANG</th>
+                <th class="align-middle">RUANGAN</th>
+                <th class="align-middle">JUMLAH</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($penyusutan as $data)
+            <tr class="text-left text-uppercase">
+                <td class="text-center">{{$loop->iteration}}</td>
+                <td>{{date('d F Y',strtotime($data->tgl_keluar))}}</td>
+                <td>{{$data->user->nama}}</td>
+                <td>{{$data->barang->nama_barang}}</td>
+                <td>{{$data->ruangan->nama_ruangan}}</td>
+                <td class="text-center">{{$data->jumlah}} pcs </td>
+            </tr>
+            @endforeach
+
+            @forelse ($penyusutan as $data)
+
+            @empty
+            <td colspan="8" class="text-center">Data pada periode {{date('d F Y',strtotime($startDate))}} s/d
+                {{date('d F Y',strtotime($endDate))}} tidak ditemukan</td>
+            @endforelse
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
