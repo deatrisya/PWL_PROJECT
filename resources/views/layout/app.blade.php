@@ -32,6 +32,6 @@
     <script src="{{asset('admin/js/off-canvas.js')}}"></script>
     <script src="{{asset('admin/js/misc.js')}}"></script>
     <script src="{{asset('admin/js/dashboard.js')}}"></script>
-
+    @yield('js')
 </body>
 </html>
