@@ -8,7 +8,7 @@
 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
-            
+
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
               <div class="dropdown-item">
                 <p class="mb-0 font-weight-normal float-left">You have 7 unread mails
@@ -117,7 +117,7 @@
               <img class="img-xs rounded-circle" src="{{asset('storage/'.Auth()->user()->foto)}}" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-              <a class="dropdown-item p-0">
+              {{-- <a class="dropdown-item p-0">
                 <div class="d-flex border-bottom">
                   <div class="py-3 px-4 d-flex align-items-center justify-content-center">
                     <i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i>
@@ -129,8 +129,8 @@
                     <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
                   </div>
                 </div>
-              </a>
-              <a class="dropdown-item mt-2">
+              </a> --}}
+              {{-- <a class="dropdown-item mt-2">
                 Manage Accounts
               </a>
               <a class="dropdown-item">
@@ -138,8 +138,8 @@
               </a>
               <a class="dropdown-item">
                 Check Inbox
-              </a>
-              <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              </a> --}}
+              <a class="dropdown-item mt-3" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Sign Out
               </a>
               <form action="{{route('logout')}}" id="logout-form" method="POST" class="d-none">
