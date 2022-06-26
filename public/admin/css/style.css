@@ -16111,11 +16111,11 @@ ul {
 /* === Landing screens === */
 /* Auth */
 .auth.auth-bg-1 {
-  background: url("../images/auth/login_1.jpg");
+  background: url("../images/auth/login_register.png");
   background-size: cover; }
 
 .auth.register-bg-1 {
-  background: url("../images/auth/register.jpg") center center no-repeat;
+  background: url("../images/auth/register.png") center center no-repeat;
   background-size: cover; }
 
 .auth.theme-one .auto-form-wrapper {
