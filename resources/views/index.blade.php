@@ -236,7 +236,7 @@ Dashboard
                     <div class="wrapper">
                         <div class="d-flex justify-content-between">
                             <p class="mb-2">Perbaikan</p>
-                            <p class="mb-2 text-primary">{{$percentPerbaikan}}%</p>
+                            <p class="mb-2 text-primary">{{number_format($percentPerbaikan)}}%</p>
                         </div>
                         <div class="progress">
                             <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
@@ -248,7 +248,7 @@ Dashboard
 
                         <div class="d-flex justify-content-between">
                             <p class="mb-2">Selesai Perbaikan</p>
-                            <p class="mb-2 text-success">{{$percentSls}}%</p>
+                            <p class="mb-2 text-success">{{number_format($percentSls)}}%</p>
                         </div>
                         <div class="progress">
                             <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
@@ -285,8 +285,9 @@ Dashboard
             labels: labelBarang,
             datasets: [{
                 label: 'Data Barang',
-                borderColor: ["rgb(255, 99, 132)","rgb(255, 159, 64)"],
-                backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(255, 159, 64, 0.2)'],
+                borderColor: ["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)"],
+                borderWidth:1,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(255, 159, 64, 0.2)','rgba(255, 205, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(54, 162, 235, 0.2)','rgba(153, 102, 255, 0.2)'],
                 data: datBarang,
                 fill: false
             }]
