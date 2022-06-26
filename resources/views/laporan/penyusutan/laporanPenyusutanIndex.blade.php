@@ -69,13 +69,15 @@ Data Barang Keluar
             </div>
         </div>
     </div>
-    @endsection
-    @section('js')
-    <script>
-        function cetakData(){
-            var start_date = document.getElementById('start_date').value;
-            var end_date = document.getElementById('end_date').value;
-            window.open('{{route("laporanPenyusutan.cetakPdf")}}?start_date='+start_date+'&end_date='+end_date);
-        }
-    </script>
+</div>
+@endsection
+@section('js')
+<script>
+    function cetakData() {
+        var start_date = document.getElementById('start_date').value;
+        var end_date = document.getElementById('end_date').value;
+        window.open('{{route("laporanPenyusutan.cetakPdf")}}?start_date=' + start_date + '&end_date=' + end_date);
+    }
+
+</script>
 @endsection
