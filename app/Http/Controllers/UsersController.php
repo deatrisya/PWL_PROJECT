@@ -54,7 +54,7 @@ class UsersController extends Controller
         $request->validate([
             'foto' => 'required',
             'nama' => 'required',
-            'username'=> 'required|string|max:20',
+            'username'=> 'required|string|max:20|unique:users',
             'password' => 'min:8|confirmed|nullable',
             'email' => 'required|email|unique:users',
             'tgl_lahir' => 'required|date',
