@@ -54,7 +54,7 @@ Data Supplier
                                             class="mdi mdi-pencil"></i></a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-icons btn-danger"><i
+                                    <button type="submit" class="btn btn-icons btn-danger text-white show_confirm" data-toggle="tooltip" title='Delete'><i
                                             class="mdi mdi-delete"></i></button>
                                 </form>
                             </td>
@@ -84,4 +84,26 @@ Data Supplier
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script>
+      $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Are you sure you want to delete this record?`,
+              text: "If you delete this, it will be gone forever.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+    </script>
 @endsection
